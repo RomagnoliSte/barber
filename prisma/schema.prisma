@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -8,10 +7,10 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String
+  id        String    @id @default(cuid())
   name      String
-  creatdAt  DateTime  @default(now())
+  email     String    @unique
+  createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   bookings  Booking[]
 }
@@ -23,9 +22,9 @@ model Barbershop {
   phones      String[]
   description String
   imageUrl    String
-  services    BarbershopService[]
-  creatdAt    DateTime            @default(now())
+  createdAt    DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
+  services    BarbershopService[]
 }
 
 model BarbershopService {
@@ -33,12 +32,12 @@ model BarbershopService {
   name         String
   description  String
   imageUrl     String
-  price        Decimal    @db.Decimal(10, 2)  
+  price        Decimal    @db.Decimal(10, 2)
   barbershopId String
   barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
   bookings     Booking[]
-  creatdAt     DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 }
 
 model Booking {
@@ -48,6 +47,6 @@ model Booking {
   serviceId String
   service   BarbershopService @relation(fields: [serviceId], references: [id])
   date      DateTime
-  creatdAt  DateTime          @default(now())
+  createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
 }

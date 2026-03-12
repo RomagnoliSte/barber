@@ -3,7 +3,7 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "creatdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -17,8 +17,9 @@ CREATE TABLE "Barbershop" (
     "phones" TEXT[],
     "description" TEXT NOT NULL,
     "imageUrl" TEXT NOT NULL,
-    "creatdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "services" TEXT[],
 
     CONSTRAINT "Barbershop_pkey" PRIMARY KEY ("id")
 );
@@ -31,7 +32,7 @@ CREATE TABLE "BarbershopService" (
     "imageUrl" TEXT NOT NULL,
     "price" DECIMAL(10,2) NOT NULL,
     "barbershopId" TEXT NOT NULL,
-    "creatdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "BarbershopService_pkey" PRIMARY KEY ("id")
@@ -43,7 +44,7 @@ CREATE TABLE "Booking" (
     "userId" TEXT NOT NULL,
     "serviceId" TEXT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "creatdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Booking_pkey" PRIMARY KEY ("id")
